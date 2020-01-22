@@ -1,4 +1,4 @@
-# beauty
+# Change Skin
 
 ## Project setup
 ```
