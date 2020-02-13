@@ -5,18 +5,11 @@
       <div class="header_wrap">
         <div class="header_logo">
           <router-link to="/" class="d-block logo_link" >
-            <h3>Chnage Skin</h3>
+            <h3>Change Skin</h3>
           </router-link>
         </div>
         <div class="header_items_wrap"
         :class="{'menu_item_open': menuOpen === true}">
-          <div class="top_icon">
-            <router-link to="/check_order" class="btn_cart"><i class="fas fa-shopping-cart"></i>
-            <span class="badge badge-pill badge-dark">{{cart.carts.length}}</span>
-            </router-link>
-            <router-link to="/login"><i class="fas fa-user"></i>
-            </router-link>
-          </div>
           <div class="menu">
             <ul>
               <li>
@@ -30,6 +23,13 @@
                 to="/discounts">優惠訊息</router-link>
               </li>
             </ul>
+          </div>
+          <div class="top_icon">
+            <router-link to="/login"><i class="fas fa-user"></i>
+            </router-link>
+            <router-link to="/check_order" class="btn_cart"><i class="fas fa-shopping-cart"></i>
+            <span class="badge badge-pill badge-dark">{{cart.carts.length}}</span>
+            </router-link>
           </div>
         </div>
         <div class="menu_btn d-lg-none d-block"
@@ -71,7 +71,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
   .header {
     position: fixed;
     top: 0;
@@ -94,100 +93,102 @@ export default {
     }
   }
   .header_items_wrap {
+    align-self: center;
+    @media (min-width: 992px) {
+      display: flex;
+    }
+    @media (max-width: 991px) {
+      position: fixed;
+      background: #fff;
+      width: 100%;
+      top: 61px;
+      height: calc(100% - 61px);
+      left: 0;
+      z-index: 110;
+      overflow-y: auto;
+      transition: transform 1s ease-in-out;
+      transform: translateX(100%);
+      padding-top: 1rem;
+      &.menu_item_open {
+        transform: translateX(0%);
+      }
+    }
+    .menu {
       align-self: center;
-      @media (min-width: 992px) {
-        display: flex;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+        list-style: none;
+          > a{
+            text-decoration: none;
+            padding: 0 1rem;
+            text-align: center;
+            color: #000;
+          }
+        }
+        @media (max-width: 991px) {
+          display: block;
+          >:not(:last-child){
+              margin-bottom: 1rem;
+          }
+          li {
+            .menu_link {
+              position: relative;
+            }
+          }
+        }
+        @media (min-width: 992px) {
+          display: flex;
+          li {
+            position: relative;
+            &:hover {
+              .menu_link {
+                &:after {
+                  width: 100%;
+                }
+              }
+            }
+            .menu_link {
+              position: relative;
+              &:after {
+                content: '';
+                width: 0;
+                height: 2px;
+                background-color: #000;
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+              }
+            }
+          }
+        }
+      }
+    }
+    .top_icon {
+      text-align: center;
+      a {
+        margin: 0 0.5rem;
+        display: inline-block;
+        padding: 0.5rem;
+      }
+      .btn_cart {
+        position: relative;
+        .badge {
+          position: absolute;
+          top: 1px;
+          right: -5px;
+        }
       }
       @media (max-width: 991px) {
-        position: fixed;
-        background: #fff;
-        width: 100%;
-        top: 61px;
-        height: calc(100% - 61px);
-        left: 0;
-        z-index: 110;
-        overflow-y: auto;
-        transition: transform 1s ease-in-out;
-        transform: translateX(100%);
-        padding-top: 1rem;
-        &.menu_item_open {
-          transform: translateX(0%);
-        }
+        margin-top: 1rem;
       }
-      .top_icon {
-        text-align: center;
-        a {
-          margin: 0 0.5rem;
-          display: inline-block;
-          padding: 0.5rem;
-        }
-        .btn_cart {
-          position: relative;
-          .badge {
-            position: absolute;
-            top: 1px;
-            right: -5px;
-          }
-        }
-      }
-      .menu {
-        align-self: center;
-        @media (max-width: 991px) {
-          width: 100%;
-        }
-        ul {
-          margin: 0;
-          padding: 0;
-          li {
-          list-style: none;
-            > a{
-              text-decoration: none;
-              padding: 0 1rem;
-              text-align: center;
-              color: #000;
-            }
-          }
-          @media (max-width: 991px) {
-            display: block;
-            margin-top: 1rem;
-            >:not(:last-child){
-                margin-bottom: 1rem;
-            }
-            li {
-              .menu_link {
-                position: relative;
-              }
-            }
-          }
-          @media (min-width: 992px) {
-            display: flex;
-            li {
-              position: relative;
-              &:hover {
-                .menu_link {
-                  &:after {
-                    width: 100%;
-                  }
-                }
-              }
-              .menu_link {
-                position: relative;
-                &:after {
-                  content: '';
-                  width: 0;
-                  height: 2px;
-                  background-color: #000;
-                  position: absolute;
-                  bottom: 0px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-                }
-              }
-            }
-          }
-        }
-      }
+    }
   }
   .menu_btn {
     align-self: center;

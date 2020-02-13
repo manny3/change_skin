@@ -26,7 +26,7 @@
             <span v-else>未啟用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm"
+            <button class="btn btn-outline-primary btn-sm mr-2"
             @click="openCoupon(false, item)"
             >編輯</button>
             <button class="btn btn-outline-danger btn-sm"
@@ -155,7 +155,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`;
       const vm = this;
       vm.isLoading = true;
-      this.$http.get(api)
+      vm.$http.get(api)
         .then((res) => {
           if (res.data.success) {
             vm.isLoading = false;
@@ -165,15 +165,16 @@ export default {
         });
     },
     openCoupon(isNews, item) {
+      const vm = this;
       $('#couponModal').modal('show');
       if (isNews) {
-        this.tempCoupon = {};
-        this.isNews = true;
+        vm.tempCoupon = {};
+        vm.isNews = true;
       } else {
-        this.tempCoupon = Object.assign({}, item);// 防止物件傳參考
-        this.isNews = false;
-        const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
-        [this.due_date] = dateAndTime;
+        vm.tempCoupon = Object.assign({}, item);// 防止物件傳參考
+        vm.isNews = false;
+        const dateAndTime = new Date(vm.tempCoupon.due_date * 1000).toISOString().split('T');
+        [vm.due_date] = dateAndTime;
       }
     },
     updateopenCoupon() {
@@ -184,7 +185,7 @@ export default {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
         httpMethod = 'put';
       }
-      this.$http[httpMethod](api, { data: vm.tempCoupon })
+      vm.$http[httpMethod](api, { data: vm.tempCoupon })
         .then((res) => {
           if (res.data.success) {
             $('#couponModal').modal('hide');
@@ -196,14 +197,15 @@ export default {
         });
     },
     openDelCouponModel(item) {
+      const vm = this;
       $('#delCouponModal').modal('show');
-      this.tempCoupon = Object.assign({}, item);
+      vm.tempCoupon = Object.assign({}, item);
     },
     delCoupon() {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${vm.tempCoupon.id}`;
       vm.isLoading = true;
-      this.$http.delete(api).then((res) => {
+      vm.$http.delete(api).then((res) => {
         if (res.data.success) {
           $('#delCouponModal').modal('hide');
           vm.getCoupons();
@@ -216,7 +218,8 @@ export default {
     },
   },
   created() {
-    this.getCoupons();
+    const vm = this;
+    vm.getCoupons();
   },
 };
 </script>

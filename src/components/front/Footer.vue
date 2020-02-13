@@ -16,13 +16,13 @@
           <p>信箱：test555@gmail.com</p>
           <div class="footer-icon">
             <a href="#" target="_blank">
-                <i class="fab fa-2x fa-facebook-square"></i>
+              <i class="fab fa-2x fa-facebook-square"></i>
             </a>
             <a href="#" target="_blank">
-                <i class="fab fa-2x fa-instagram"></i>
+              <i class="fab fa-2x fa-instagram"></i>
             </a>
             <a href="#" target="_blank">
-                <i class="fab fa-2x fa-line"></i>
+              <i class="fab fa-2x fa-line"></i>
             </a>
           </div>
         </div>

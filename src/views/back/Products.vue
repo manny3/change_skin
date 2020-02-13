@@ -30,7 +30,7 @@
             <span v-else>未啟用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm"
+            <button class="btn btn-outline-primary btn-sm mr-2"
             @click="openproduct(false, item)"
             >編輯</button>
             <button class="btn btn-outline-primary btn-sm"
@@ -196,7 +196,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`;
       const vm = this;
       vm.isLoading = true;
-      this.$http.get(api)
+      vm.$http.get(api)
         .then((res) => {
           if (res.data.success) {
             vm.isLoading = false;
@@ -206,24 +206,26 @@ export default {
         });
     },
     openproduct(isNews, item) {
+      const vm = this;
       $('#productModal').modal('show');
       if (isNews) {
-        this.tempProduct = {};
-        this.isNews = true;
+        vm.tempProduct = {};
+        vm.isNews = true;
       } else {
-        this.tempProduct = Object.assign({}, item);
-        this.isNews = false;
+        vm.tempProduct = Object.assign({}, item);
+        vm.isNews = false;
       }
     },
     openDelProductModel(item) {
+      const vm = this;
       $('#delProductModal').modal('show');
-      this.tempProduct = Object.assign({}, item);
+      vm.tempProduct = Object.assign({}, item);
     },
     delProduct() {
       const vm = this;
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
       vm.isLoading = true;
-      this.$http.delete(api).then((res) => {
+      vm.$http.delete(api).then((res) => {
         if (res.data.success) {
           $('#delProductModal').modal('hide');
           vm.getProducts();
@@ -242,7 +244,7 @@ export default {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
         httpMethod = 'put';
       }
-      this.$http[httpMethod](api, { data: vm.tempProduct })
+      vm.$http[httpMethod](api, { data: vm.tempProduct })
         .then((res) => {
           if (res.data.success) {
             $('#productModal').modal('hide');
@@ -263,7 +265,7 @@ export default {
       formData.append('file-to-upload', uploadedFile);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`;
       vm.status.fileUploading = true;
-      this.$http.post(url, formData, {
+      vm.$http.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/from-data',
         },
@@ -278,7 +280,8 @@ export default {
     },
   },
   created() {
-    this.getProducts();
+    const vm = this;
+    vm.getProducts();
   },
 };
 </script>

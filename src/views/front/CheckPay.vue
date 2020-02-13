@@ -2,7 +2,8 @@
 <template>
   <div class="checkpay">
     <div class="container">
-      <form @submit.prevent="payOrder">
+      <form>
+        <!-- @submit.prevent="payOrder" -->
         <div class="order_table">
           <table class="table mb-0">
             <thead>
@@ -56,15 +57,40 @@
             </tbody>
           </table>
         </div>
-        <div class="text-right mt-3" v-if="order.is_paid === false">
-          <button class="btn btn-outline-primary rounded-pill">確認付款去</button>
+        <div class="d-flex justify-content-between mt-3" v-if="order.is_paid === false">
+          <router-link to="/products" tag="button" class="btn btn-outline-primary">回到商品頁</router-link>
+          <button class="btn btn-outline-primary" data-toggle="modal" data-target="#payModal">確認付款去</button>
         </div>
       </form>
+      <div class="text-center mt-3" v-if="order.is_paid === true">
+        <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">繼續購物</router-link>
+      </div>
+    </div>
+    <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">是否同意授權扣款</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            立即支付 ${{ order.total | round }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" @click="payOrder">確認付款</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import $ from 'jquery';
+
 export default {
   data() {
     return {
@@ -78,10 +104,8 @@ export default {
     getOrder() {
       const vm = this;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${vm.orderId}`;
-      vm.isLoading = true;
       vm.$http.get(url).then((res) => {
         vm.order = res.data.order;
-        vm.isLoading = false;
       });
     },
     payOrder() {
@@ -91,15 +115,16 @@ export default {
       vm.$http.post(url).then((res) => {
         if (res.data.success) {
           vm.getOrder();
-          vm.$bus.$emit('messsage:push', res.data.message, 'success');
+          vm.$store.dispatch('alertModules/updateMessage', { message: res.data.message, status: 'success' });
         }
-        vm.isLoading = false;
+        $('#payModal').modal('hide');
       });
     },
   },
   created() {
-    this.orderId = this.$route.params.orderId;
-    this.getOrder();
+    const vm = this;
+    vm.orderId = vm.$route.params.orderId;
+    vm.getOrder();
   },
 };
 </script>

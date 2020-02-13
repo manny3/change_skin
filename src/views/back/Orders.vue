@@ -57,7 +57,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=${page}`;
       const vm = this;
       vm.isLoading = true;
-      this.$http.get(api)
+      vm.$http.get(api)
         .then((res) => {
           if (res.data.success) {
             vm.isLoading = false;
@@ -68,7 +68,8 @@ export default {
     },
   },
   created() {
-    this.getOrders();
+    const vm = this;
+    vm.getOrders();
   },
 };
 </script>

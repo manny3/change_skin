@@ -16,18 +16,18 @@
           <div class="border border-secondary p-3">
             <h4 class="font-weight-bold">特價：{{ product.price }} 元/ {{ product.unit }}</h4>
             <del class="d-block mb-3">原價:{{ product.origin_price }}元</del>
-            <div class="d-flex justify-content-between mb-3">
+            <div class="mb-3">
               <p class="font-h6 mb-2">請選擇數量</p>
-              <select class="form-control w-auto" v-model="product.num">
+              <select class="form-control" v-model="product.num">
                 <option>數量</option>
                 <option :value="num" v-for="num in 10" :key="num">
                   {{num}} {{product.unit}}
                 </option>
               </select>
             </div>
-            <button class="btn btn-outline-primary rounded-pill"
+            <button class="btn btn-primary btn-lg"
             @click="addCart(itemID, product.num)">
-              <i class="fas fa-cart-plus"></i>
+              <i class="fas fa-cart-plus mr-2"></i>
               <span>加入購物車</span>
             </button>
           </div>
@@ -35,9 +35,9 @@
       </div>
       <section class="mt-5">
         <div class="row">
-          <div class="col-md-6 col-12">
+          <div class="col-md-8 col-12">
             <div class="block_list_content">
-              <h2>產品描述</h2>
+              <h4>產品描述</h4>
               <p class="text-justify px-3">
                 {{ product.description }}
               </p>
@@ -46,9 +46,9 @@
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-12">
+          <div class="col-md-8 col-12">
             <div class="block_list_content">
-              <h2><strong>商品資訊</strong></h2>
+              <h4>產品資訊</h4>
               <div class="content_table">
                 <table class="table">
                   <tr>
@@ -73,7 +73,7 @@
           </div>
         </div>
       </section>
-      <button class="btn btn-outline-primary rounded-pill mb-3" onclick="history.back()"><i class="fas fa-long-arrow-alt-left mr-1"></i>返回</button>
+      <button class="btn btn-outline-primary mb-3" onclick="history.back()"><i class="fas fa-long-arrow-alt-left mr-1"></i>返回</button>
     </div>
   </div>
 </template>
@@ -123,14 +123,14 @@ export default {
     padding: 2rem 0;
   }
   .block_list_content {
-    h2 {
+    h4 {
       text-align: center;
       margin-bottom: 3rem;
       position: relative;
       &:after {
         content: '';
         width: 50%;
-        height: 4px;
+        height: 3px;
         background-color: #000;
         position: absolute;
         top: 100%;
@@ -138,6 +138,7 @@ export default {
         transform: translateX(-50%);
       }
     }
+    padding: 0 3rem 5rem;
     @media (max-width: 767px) {
       padding: 0 3rem 5rem;
     }

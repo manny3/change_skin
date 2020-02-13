@@ -1,8 +1,9 @@
-$text_main: #33272a;
-
-.text_main{
-  color : $text_main;
+html,body{
+  height: 100%;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
+
 .bg_light {
   background-color: #fffefc;
 }

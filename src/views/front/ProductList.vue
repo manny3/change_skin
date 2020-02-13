@@ -39,10 +39,10 @@
                   <h4 class="text-justify">特價：{{ item.price }}</h4>
                 </div>
                   <div class="product_link">
-                    <button class="btn btn-outline-secondary rounded-pill w-100" @click="itemPage(item.id)">
+                    <button class="btn btn-outline-secondary w-100" @click="itemPage(item.id)">
                       詳情
                     </button>
-                    <button class="btn btn-outline-primary rounded-pill w-100"
+                    <button class="btn btn-outline-primary w-100"
                     @click="addtoCart(item.id)">
                       加入購物車
                     </button>
@@ -144,12 +144,13 @@ export default {
   .product_list {
     margin-bottom: 3rem;
     transition: box-shadow .5s ease,;
+    box-shadow: 9px 10px 5px 0px #F8F8F8;
+    cursor: pointer;
     &:hover {
-      box-shadow: 9px 10px 5px 0px rgba(255,139,167,1);
+      box-shadow: 9px 10px 0px 0px rgba(255,139,167,1);
     }
     .product_content {
       padding: 1rem;
-      border: 2px solid #cccccc;
       background-color: #fff;
       position: relative;
       > *:not(:last-child) {

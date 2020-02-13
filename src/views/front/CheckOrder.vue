@@ -1,14 +1,15 @@
 
 <template>
   <div class="checkout">
+     <Loading :active.sync="isLoading"></Loading>
     <div class="container">
       <div class="empty_cart" v-if="cart.carts.length === 0">
         <div class="empty_cart_img">
-          <img src="../../assets/images/paper_bag.png" class="img-fluid" alt="empty_cart_img">
+          <img src="../../assets/images/img-cart.png" class="img-fluid" alt="empty_cart_img">
         </div>
         <h3>目前購物車是空的</h3>
         <div class="empty_cart_btn">
-        <router-link to="/products" tag="button" class="btn btn-outline-primary rounded-pill">購物去</router-link>
+        <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">購物去</router-link>
       </div>
       </div>
       <div class="row" v-if="cart.carts.length > 0">
@@ -34,7 +35,15 @@
                     {{ item.product.title }}
                   </td>
                   <td>
-                    {{ item.qty }}/{{ item.product.unit }}
+                    <a href="#">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                    <span class="px-3">
+                      {{ item.qty }}/{{ item.product.unit }}
+                    </span>
+                    <a href="#">
+                      <i class="fas fa-minus"></i>
+                    </a>
                   </td>
                   <td class="text-right">
                     {{ item.total }}
@@ -96,7 +105,7 @@
                   </ValidationProvider>
                 </div>
                 <div class="form-group">
-                  <label for="usertel" class="cart_from_title mb-2"><span>*</span>收件人地址</label>
+                  <label for="address" class="cart_from_title mb-2"><span>*</span>收件人地址</label>
                   <ValidationProvider name="地址" rules="required" v-slot="{ errors }">
                   <input v-model="form.user.address" class="form-control form-control-sm" id="address" type="text"
                   :class="{'is-invalid': errors[0]}"
@@ -110,7 +119,7 @@
                   v-model="form.message"></textarea>
                 </div>
                 <div class="text-right">
-                  <button class="btn btn-outline-primary rounded-pill">送出訂單</button>
+                  <button class="btn btn-outline-primary">送出訂單</button>
                 </div>
               </form>
             </ValidationObserver>
@@ -190,7 +199,7 @@ export default {
   }
   .empty_cart{
     >:not(:last-child){
-      margin-bottom: 1.5rem;
+      margin-bottom: 3rem;
     }
     .empty_cart_img{
       text-align: center;

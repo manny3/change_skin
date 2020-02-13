@@ -1,7 +1,6 @@
 
 <template>
   <div class="discount">
-    <loading :active.sync="isLoading"></loading>
     <div class="container">
       <section class="mt-5">
         <div class="block_list_content">
@@ -17,7 +16,7 @@
         </div>
       </section>
       <div class="discount_btn mt-3 text-right">
-        <router-link to="/products" tag="button" class="btn btn-outline-primary rounded-pill">購物去<i class="fas fa-long-arrow-alt-right"></i></router-link>
+        <router-link to="/products" tag="button" class="btn btn-outline-primary">購物去<i class="fas fa-long-arrow-alt-right"></i></router-link>
       </div>
     </div>
   </div>
@@ -28,28 +27,47 @@
 export default {
   data() {
     return {
-      coupons: [],
-      isLoading: false,
+      coupons: [
+        {
+          code: '2020SALE',
+          due_date: 1582848000,
+          id: '-Lz8CxhRWE7Q1nyb6C0D',
+          is_enabled: 1,
+          num: 1,
+          percent: 85,
+          title: '年後促銷',
+        },
+        {
+          code: '2020CH',
+          due_date: 1585612800,
+          id: '-LygcseNS2jQWwoodV5e',
+          is_enabled: 1,
+          num: 2,
+          percent: 80,
+          title: '季節優惠',
+        },
+      ],
+      // isLoading: false,
     };
   },
-  methods: {
-    getCoupons() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
-      const vm = this;
-      vm.isLoading = true;
-      vm.$http.get(api)
-        .then((res) => {
-          if (res.data.success) {
-            vm.isLoading = false;
-            vm.coupons = res.data.coupons;
-          }
-        });
-    },
-  },
-  created() {
-    const vm = this;
-    vm.getCoupons();
-  },
+  // methods: {
+  //   getCoupons() {
+  //     const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
+  //     const vm = this;
+  //     vm.isLoading = true;
+  //     vm.$http.get(api)
+  //       .then((res) => {
+  //         if (res.data.success) {
+  //           vm.isLoading = false;
+  //           vm.coupons = res.data.coupons;
+  //         }
+  //       });
+  //   },
+  // },
+  // created() {
+  //   const vm = this;
+  //   vm.getCoupons();
+  // },
 };
 </script>
 

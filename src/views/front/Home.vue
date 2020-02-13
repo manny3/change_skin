@@ -1,11 +1,11 @@
 <template>
-  <div class="bg_light">
+  <div class=" bg_light">
     <Alertmsg/>
     <FixedNav/>
     <div class="home_wrap">
       <router-view></router-view>
     </div>
-      <Footer/>
+    <Footer/>
   </div>
 </template>
 
@@ -26,5 +26,6 @@ export default {
 <style lang="scss" scoped>
   .home_wrap{
     margin-top: 57px;
+    min-height: 700px;
   }
 </style>
