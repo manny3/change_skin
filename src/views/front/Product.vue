@@ -133,7 +133,7 @@ export default {
         height: 3px;
         background-color: #000;
         position: absolute;
-        top: 100%;
+        bottom: -25%;
         left: 50%;
         transform: translateX(-50%);
       }

@@ -25,7 +25,8 @@ export default {
   },
   methods: {
     updateMessage(message, status) {
-      this.$store.dispatch('alertModules/updateMessage', { message, status });
+      const vm = this;
+      vm.$store.dispatch('alertModules/updateMessage', { message, status });
     },
     ...mapActions('alertModules', ['removeMessage', 'removeMessageWithTiming']),
   },

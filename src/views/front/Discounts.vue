@@ -47,27 +47,8 @@ export default {
           title: '季節優惠',
         },
       ],
-      // isLoading: false,
     };
   },
-  // methods: {
-  //   getCoupons() {
-  //     const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons`;
-  //     const vm = this;
-  //     vm.isLoading = true;
-  //     vm.$http.get(api)
-  //       .then((res) => {
-  //         if (res.data.success) {
-  //           vm.isLoading = false;
-  //           vm.coupons = res.data.coupons;
-  //         }
-  //       });
-  //   },
-  // },
-  // created() {
-  //   const vm = this;
-  //   vm.getCoupons();
-  // },
 };
 </script>
 

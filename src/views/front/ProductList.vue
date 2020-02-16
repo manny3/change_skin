@@ -6,7 +6,7 @@
       <div class="minor">
           <div class="minor_title text_main">
             <h2 class="font-h3">
-              <span>{{selected}}</span>
+              {{selected}}
             </h2>
           </div>
           <div class="minor_sort">
@@ -68,7 +68,7 @@ export default {
     filterData() {
       const vm = this;
       if (vm.selected === '所有商品') {
-        return this.products;
+        return vm.products;
       }
       return vm.products.filter((item) => {
         const data = item.category.toLowerCase().includes(vm.selected.toLowerCase());
@@ -90,44 +90,34 @@ export default {
     },
   },
   created() {
-    this.getProducts();
-    this.selected = '所有商品';
+    const vm = this;
+    vm.getProducts();
+    vm.selected = '所有商品';
   },
 };
 </script>
 
 <style scoped lang="scss">
   .minor {
-    padding: 3rem 0;
+    padding: 2rem 0;
     >*:not(:last-child){
       margin-bottom: 1rem;
     }
   }
   .minor_title {
+    background-image: url('../../assets/images/productTitle.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
     h2 {
-      position: relative;
-      & span {
-        background: #fff;
-        padding: 0.5rem 1.5rem;
-        position: relative;
-        display: inline-block;
-        z-index: 2;
-        border: 1px solid;
-        border-radius: 2rem;
-        margin-left: 3rem;
-        @media (max-width: 767px) {
-          margin-left: 1rem;
-        }
-      }
-      &:before {
-        content: "";
-        display: block;
-        border-top: 1px solid #000;
-        width: 100%;
-        height: 1px;
-        position: absolute;
-        top: 50%;
-        z-index: 1;
+      color: #fff;
+      margin-left: 5rem;
+      @media (max-width: 767px) {
+        margin-left: 2rem;
       }
     }
   }
@@ -178,6 +168,9 @@ export default {
       img {
         height: 250px;
         object-fit: cover;
+        @media (max-width: 767px) {
+          width: 100%;
+        }
       }
     }
   }

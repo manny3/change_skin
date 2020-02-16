@@ -260,7 +260,7 @@ export default {
     },
     uploadFile() {
       const vm = this;
-      const uploadedFile = this.$refs.files.files[0];
+      const uploadedFile = vm.$refs.files.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadedFile);
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`;

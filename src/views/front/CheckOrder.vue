@@ -20,7 +20,7 @@
                 <tr>
                   <th width="60">刪除</th>
                   <th>商品名稱</th>
-                  <th>數量</th>
+                  <th class="text-center">數量</th>
                   <th class="text-right">單價</th>
                 </tr>
               </thead>
@@ -34,16 +34,10 @@
                   <td>
                     {{ item.product.title }}
                   </td>
-                  <td>
-                    <a href="#">
-                      <i class="fas fa-plus"></i>
-                    </a>
+                  <td class="text-center">
                     <span class="px-3">
                       {{ item.qty }}/{{ item.product.unit }}
                     </span>
-                    <a href="#">
-                      <i class="fas fa-minus"></i>
-                    </a>
                   </td>
                   <td class="text-right">
                     {{ item.total }}
@@ -167,7 +161,7 @@ export default {
       vm.$store.dispatch('updateLoading', true);
       vm.$http.post(url, { data: coupon }).then((res) => {
         if (res.data.success) {
-          this.$store.dispatch('cartModules/getCart');
+          vm.$store.dispatch('cartModules/getCart');
         } else {
           vm.$bus.$emit('messsage:push', res.data.message, 'danger');
         }
@@ -179,7 +173,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`;
       const order = vm.form;
       vm.$store.dispatch('updateLoading', true);
-      this.$http.post(url, { data: order }).then((res) => {
+      vm.$http.post(url, { data: order }).then((res) => {
         if (res.data.success) {
           vm.$router.push(`/check_pay/${res.data.orderId}`);
         }
@@ -188,7 +182,8 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('cartModules/getCart');
+    const vm = this;
+    vm.$store.dispatch('cartModules/getCart');
   },
 };
 </script>

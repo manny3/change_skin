@@ -31,7 +31,8 @@ export default {
   },
   methods: {
     updatePage(page) {
-      this.$emit('emitPages', page);
+      const vm = this;
+      vm.$emit('emitPages', page);
     },
   },
 };

@@ -65,7 +65,8 @@ export default {
     ...mapActions('cartModules', ['getCart']),
   },
   created() {
-    this.getCart();
+    const vm = this;
+    vm.getCart();
   },
 };
 </script>

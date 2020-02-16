@@ -2,13 +2,18 @@
   <div class="footer">
     <div class="container">
       <div class="footer-wrap">
-        <div class="footer-link">
+        <div class="footer-list">
+          <div class="footer-link">
           <router-link
-          @click.native="menuOpen = false"
-          to="/products">產品列表</router-link>
-          <router-link
-          @click.native="menuOpen = false"
-          to="/discounts">優惠訊息</router-link>
+            @click.native="menuOpen = false"
+            to="/products">產品列表</router-link>
+            <router-link
+            @click.native="menuOpen = false"
+            to="/discounts">優惠訊息</router-link>
+          </div>
+          <div>
+            Copyright © 2020 版型
+          </div>
         </div>
         <div class="footer-data">
           <p>地址：彰化縣溪湖鎮彰水路二段762號</p>
@@ -28,9 +33,6 @@
         </div>
       </div>
     </div>
-    <div class="text-center py-3">
-      Copyright © 2020 版型
-    </div>
   </div>
 </template>
 
@@ -48,9 +50,9 @@ export default {
     background-color: #343a40;
     color: #fff;
     .footer-wrap {
-      padding-top: 3rem;
+      padding: 3rem 0;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       @media (max-width: 767px) {
         display: block;
         > *:not(:last-child) {
@@ -58,51 +60,55 @@ export default {
         }
       }
     }
-    .footer-link {
-      text-align: center;
-      > *:not(:last-child) {
-        margin-bottom: 0.5rem;
-      }
-      a {
-        line-height: 1.4;
-        color: #fff;
-        display: block;
-        position: relative;
-        text-decoration: none;
-        &:after {
-          content: '';
-          width: 0;
-          height: 2px;
-          background-color: #fff;
-          position: absolute;
-          bottom: 0px;
-          left: 50%;
-          transform: translateX(-50%);
-          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    .footer-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .footer-link {
+        > *:not(:last-child) {
+          margin-bottom: 0.5rem;
         }
-        &:hover {
+        a {
+          line-height: 1.4;
+          color: #fff;
+          display: block;
+          position: relative;
+          text-decoration: none;
           &:after {
-            width: 100%;
-            @media (max-width: 767px) {
-              width: 60%;
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+          }
+          &:hover {
+            &:after {
+              width: 100%;
             }
           }
         }
       }
     }
     .footer-data {
-      text-align: center;
+      text-align: right;
       > *:not(:last-child) {
         margin-bottom: 0.5rem;
       }
       .footer-icon {
         padding-top: 0.5rem;
         > *:not(:last-child) {
-          margin-right: 0.5rem;
+          margin-right: 2.5rem;
         }
         a {
           color: #fff;
         }
+      }
+      @media (max-width: 767px) {
+        text-align: left;
       }
     }
   }

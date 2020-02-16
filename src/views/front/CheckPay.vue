@@ -57,11 +57,11 @@
             </tbody>
           </table>
         </div>
-        <div class="d-flex justify-content-between mt-3" v-if="order.is_paid === false">
-          <router-link to="/products" tag="button" class="btn btn-outline-primary">回到商品頁</router-link>
-          <button class="btn btn-outline-primary" data-toggle="modal" data-target="#payModal">確認付款去</button>
-        </div>
       </form>
+      <div class="d-flex justify-content-between mt-3" v-if="order.is_paid === false">
+        <router-link to="/products" tag="button" class="btn btn-outline-primary">回到商品頁</router-link>
+        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#payModal">確認付款去</button>
+      </div>
       <div class="text-center mt-3" v-if="order.is_paid === true">
         <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">繼續購物</router-link>
       </div>
