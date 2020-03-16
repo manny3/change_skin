@@ -3,9 +3,13 @@
   <div class="product">
     <loading :active.sync="isLoading"></loading>
     <div class="container">
-      <div class="border-bottom border-primary pb-3 mb-3">
-        <h2>{{ product.title }}</h2>
-      </div>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><router-link class="menu_link"
+          to="/">首頁</router-link></li>
+        <li class="breadcrumb-item"><router-link class="menu_link"
+          to="/products">產品列表</router-link></li>
+        <li class="breadcrumb-item active">{{ product.title }}</li>
+      </ol>
       <div class="row">
         <div class="col-md-8 col-12 mb-lg-0 mb-3">
           <div class="proitem-main">
@@ -13,6 +17,9 @@
           </div>
         </div>
         <div class="col-md-4 col-12 align-self-center">
+           <div class="pb-3 mb-3">
+            <h2>{{ product.title }}</h2>
+          </div>
           <div class="border border-secondary p-3">
             <h4 class="font-weight-bold">特價：{{ product.price }} 元/ {{ product.unit }}</h4>
             <del class="d-block mb-3">原價:{{ product.origin_price }}元</del>
@@ -73,6 +80,7 @@
           </div>
         </div>
       </section>
+      <HotProduct/>
       <button class="btn btn-outline-primary mb-3" onclick="history.back()"><i class="fas fa-long-arrow-alt-left mr-1"></i>返回</button>
     </div>
   </div>
@@ -80,8 +88,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import HotProduct from '../../components/front/HotProduct.vue';
 
 export default {
+  components: {
+    HotProduct,
+  },
   data() {
     return {
       product: {},
@@ -119,6 +131,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .breadcrumb {
+    background-color: transparent;
+  }
   .product {
     padding: 2rem 0;
   }
@@ -133,7 +148,7 @@ export default {
         height: 3px;
         background-color: #000;
         position: absolute;
-        bottom: -25%;
+        bottom: -40%;
         left: 50%;
         transform: translateX(-50%);
       }

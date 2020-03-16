@@ -2,67 +2,84 @@
 <template>
   <div class="checkpay">
     <div class="container">
-      <form>
-        <!-- @submit.prevent="payOrder" -->
-        <div class="order_table">
-          <table class="table mb-0">
-            <thead>
-              <tr>
-                <th>商品名稱</th>
-                <th>數量</th>
-                <th class="text-right">單價</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in order.products" :key="item.id">
-                <td class="align-middle">{{ item.product.title }}</td>
-                <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-                <td class="align-middle text-right">{{ item.final_total | round }}</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2" class="text-right">總計</td>
-                <td class="text-right">{{ order.total | round }}</td>
-              </tr>
-            </tfoot>
-          </table>
+      <div v-if="order.is_paid === false">
+         <form>
+          <div class="order_table">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th>商品名稱</th>
+                  <th>數量</th>
+                  <th class="text-right">單價</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in order.products" :key="item.id">
+                  <td class="align-middle">{{ item.product.title }}</td>
+                  <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
+                  <td class="align-middle text-right">{{ item.final_total | round }}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2" class="text-right">總計</td>
+                  <td class="text-right">{{ order.total | round }}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="order_table">
+            <table class="table mb-0">
+              <tbody>
+                <tr>
+                  <th width="100">Email</th>
+                  <td>{{ order.user.email }}</td>
+                </tr>
+                <tr>
+                  <th>姓名</th>
+                  <td>{{ order.user.name }}</td>
+                </tr>
+                <tr>
+                  <th>收件人電話</th>
+                  <td>{{ order.user.tel }}</td>
+                </tr>
+                <tr>
+                  <th>收件人地址</th>
+                  <td>{{ order.user.address }}</td>
+                </tr>
+                <tr>
+                  <th>付款狀態</th>
+                  <td>
+                    <span v-if="!order.is_paid">尚未付款</span>
+                    <span v-else class="text-success">付款完成</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="mt-3 text-right">
+          <button class="btn btn-outline-primary" data-toggle="modal" data-target="#payModal">確認付款去</button>
         </div>
-        <div class="order_table">
-          <table class="table mb-0">
-            <tbody>
-              <tr>
-                <th width="100">Email</th>
-                <td>{{ order.user.email }}</td>
-              </tr>
-              <tr>
-                <th>姓名</th>
-                <td>{{ order.user.name }}</td>
-              </tr>
-              <tr>
-                <th>收件人電話</th>
-                <td>{{ order.user.tel }}</td>
-              </tr>
-              <tr>
-                <th>收件人地址</th>
-                <td>{{ order.user.address }}</td>
-              </tr>
-              <tr>
-                <th>付款狀態</th>
-                <td>
-                  <span v-if="!order.is_paid">尚未付款</span>
-                  <span v-else class="text-success">付款完成</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </form>
-      <div class="d-flex justify-content-between mt-3" v-if="order.is_paid === false">
-        <router-link to="/products" tag="button" class="btn btn-outline-primary">回到商品頁</router-link>
-        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#payModal">確認付款去</button>
       </div>
-      <div class="text-center mt-3" v-if="order.is_paid === true">
+      <div class="text-center mt-5" v-if="order.is_paid === true">
+        <h1>感謝您的訂購</h1>
+        <form class="my-5">
+          <div class="order_table">
+            <table class="table mb-0">
+              <tbody>
+                <tr>
+                  <th width="100">訂單編號</th>
+                  <td>{{ order.create_at }}</td>
+                </tr>
+                <tr>
+                  <th>姓名</th>
+                  <td>{{ order.user.name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
         <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">繼續購物</router-link>
       </div>
     </div>
@@ -146,6 +163,7 @@ export default {
     th, td {
       white-space: nowrap;
       vertical-align: middle;
+      border-bottom: 1px solid #dee2e6;
     }
   }
 </style>

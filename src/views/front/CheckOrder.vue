@@ -4,13 +4,11 @@
      <Loading :active.sync="isLoading"></Loading>
     <div class="container">
       <div class="empty_cart" v-if="cart.carts.length === 0">
-        <div class="empty_cart_img">
-          <img src="../../assets/images/img-cart.png" class="img-fluid" alt="empty_cart_img">
-        </div>
-        <h3>目前購物車是空的</h3>
+        <h2>目前購物車是空的</h2>
         <div class="empty_cart_btn">
-        <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">購物去</router-link>
-      </div>
+          <router-link to="/products" tag="button" class="btn btn-outline-primary btn-lg">購物去</router-link>
+        </div>
+        <HotProduct/>
       </div>
       <div class="row" v-if="cart.carts.length > 0">
         <div class="col-md-6 col-12">
@@ -126,8 +124,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import HotProduct from '../../components/front/HotProduct.vue';
 
 export default {
+  components: {
+    HotProduct,
+  },
   data() {
     return {
       coupon_code: '',
@@ -196,17 +198,13 @@ export default {
     >:not(:last-child){
       margin-bottom: 3rem;
     }
-    .empty_cart_img{
-      text-align: center;
-      img {
-        width: 250px;
-      }
-    }
-    h3 {
+    h2 {
+      padding-top: 5rem;
       text-align: center;
     }
     .empty_cart_btn {
       text-align: center;
+      padding-bottom: 5rem;
     }
   }
   .cart_table {

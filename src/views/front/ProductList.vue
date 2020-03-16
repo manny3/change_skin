@@ -25,21 +25,21 @@
       </div>
       <div class="row">
         <div class="col-lg-4 col-md-6 col-12 p-3" v-for="(item) in filterData" :key="item.id">
-          <div class="product_list">
+          <div class="product_list" @click="itemPage(item.id)">
             <div class="product_photo">
               <img :src="item.imageUrl" class="img-fluid" :alt=" item.title">
             </div>
               <div class="product_content text_main">
                 <div class="product_title text-primary">
-                  <h4>{{ item.title }}</h4>
-                  <span class="badge badge-secondary">{{ item.category }}</span>
+                  <h5>{{ item.title }}</h5>
                 </div>
+                <div class="badge badge-secondary">{{ item.category }}</div>
                 <div class="product_price">
                   <del>原價:{{ item.origin_price }}</del>
                   <h4 class="text-justify">特價：{{ item.price }}</h4>
                 </div>
                   <div class="product_link">
-                    <button class="btn btn-outline-secondary w-100" @click="itemPage(item.id)">
+                    <button class="btn btn-outline-secondary w-100" @click.stop="itemPage(item.id)">
                       詳情
                     </button>
                     <button class="btn btn-outline-primary w-100"
@@ -135,6 +135,7 @@ export default {
     margin-bottom: 3rem;
     transition: box-shadow .5s ease,;
     box-shadow: 9px 10px 5px 0px #F8F8F8;
+    border-radius: 20px;
     cursor: pointer;
     &:hover {
       box-shadow: 9px 10px 0px 0px rgba(255,139,167,1);
@@ -143,6 +144,7 @@ export default {
       padding: 1rem;
       background-color: #fff;
       position: relative;
+      border-radius: 0 0 20px 20px;
       > *:not(:last-child) {
         margin-bottom: 1rem;
       }
@@ -168,6 +170,7 @@ export default {
       img {
         height: 250px;
         object-fit: cover;
+        border-radius: 20px 20px 0px 0px;
         @media (max-width: 767px) {
           width: 100%;
         }
