@@ -3,7 +3,7 @@
     <form class="form-signin" @submit.prevent="signin">
       <div class="text-center">
         <router-link to="/">
-          <img src="../../assets/images/logo.png" class="mb-4 img-fluid" width="200" alt="logo">
+          <img src="@/assets/images/logo.png" class="mb-4 img-fluid" width="200" alt="logo">
         </router-link>
       </div>
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

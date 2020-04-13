@@ -1,29 +1,34 @@
 <template>
   <div class="about">
-    <div class="container">
+    <div class="container carousel_container">
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="../../assets/images/banner1.jpg" class="d-block w-100" alt="...">
-
-              <div class="carousel-caption d-none d-md-block">
-                <h3>極喚精靈系列</h3>
-                <p>皮米滲透技術，修復肌膚疲憊問題</p>
-              </div>
+              <router-link to="/product/-M2Yvik72iVMht8tg74S">
+                <img src="@/assets/images/banner1.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-block">
+                  <h3>極喚精靈系列</h3>
+                  <p>皮米滲透技術，修復肌膚疲憊問題</p>
+                </div>
+              </router-link>
             </div>
             <div class="carousel-item">
-              <img src="../../assets/images/banner2.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>溫°C保養系列</h3>
-                <p>以「溫・冷・溫」平衡肌膚溫度，創造彈力潤澤的透明素肌</p>
-              </div>
+              <router-link to="/product/-LxHeGHuwbWsCRWHWgxO">
+                <img src="@/assets/images/banner2.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-block">
+                  <h3>溫°C保養系列</h3>
+                  <p>以「溫・冷・溫」平衡肌膚溫度，創造彈力潤澤的透明素肌</p>
+                </div>
+              </router-link>
             </div>
             <div class="carousel-item">
-              <img src="../../assets/images/banner3.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>淨荳系列</h3>
-                <p>預防痘痘及毛孔粗糙，打造光滑裸肌</p>
-              </div>
+              <router-link to="/product/-LxMPk2DKh4N1hgIsWMw">
+                <img src="@/assets/images/banner3.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-block">
+                  <h3>淨荳系列</h3>
+                  <p>預防痘痘及毛孔粗糙，打造光滑裸肌</p>
+                </div>
+              </router-link>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -36,19 +41,21 @@
           </a>
       </div>
     </div>
-    <div class="slogan">
-      <div class="slogan_text">
-        <h2>Change Skin</h2>
-        <p>融納植物精華，綻放青春年華</p>
+    <div class="container">
+      <div class="slogan">
+        <div class="slogan_text">
+          <h2>Change Skin</h2>
+          <p>融納植物精華，綻放青春年華</p>
+        </div>
       </div>
     </div>
     <div class="home-content">
         <div class="home_list">
-          <div class="container">
-            <div class="row align-items-center">
+          <div class="container home_list_container">
+            <div class="row align-items-center no-gutters">
               <div class="col-md-6 col-12">
                 <div class="home_list_photo">
-                  <img src="../../assets/images/about1.jpg" class="img-fluid" alt="標題">
+                  <img src="@/assets/images/about1.jpg" class="img-fluid" alt="標題">
                 </div>
               </div>
               <div class="col-md-6 col-12">
@@ -68,11 +75,11 @@
           </div>
         </div>
         <div class="home_list">
-          <div class="container">
-            <div class="row align-items-center">
+          <div class="container home_list_container">
+            <div class="row align-items-center no-gutters">
               <div class="col-md-6 col-12 order-md-12">
                 <div class="home_list_photo">
-                  <img src="../../assets/images/about2.jpg" class="img-fluid" alt="標題">
+                  <img src="@/assets/images/about2.jpg" class="img-fluid" alt="標題">
                 </div>
               </div>
               <div class="col-md-6 col-12">
@@ -97,7 +104,7 @@
 </template>
 
 <script>
-import HotProduct from '../../components/front/HotProduct.vue';
+import HotProduct from '@/components/front/HotProduct.vue';
 
 export default {
   components: {
@@ -118,9 +125,22 @@ export default {
       object-fit: cover;
     }
   }
+  @media (max-width: 992px) {
+    .carousel_container {
+      max-width: none;
+      padding: 0;
+    }
+  }
   .carousel-caption {
     background-color: rgba(255, 255, 255, 0.6);
     color: black;
+    @media (max-width: 576px) {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
   }
   .slogan {
     font-family: 'Kaushan Script', cursive;
@@ -136,47 +156,62 @@ export default {
         margin-bottom: 2rem;
       }
     }
+    @media (max-width: 768px) {
+      padding: 3rem 0;
+    }
   }
   .home_list {
     background-color: #efece8;
-    &:nth-child(even){
-      // background: linear-gradient( 90deg,#efece8 90%, #ff544e 10%);
-      .home_list_photo {
-        img {
-          box-shadow: 10px 10px 0px 0px #ff544e;
-        }
-      }
-    }
-    background-repeat: no-repeat;
-    padding: 5rem 0;
     .home_list_photo {
       text-align: center;
       img {
         object-fit: cover;
-        height: 300px;
-        box-shadow: -10px -10px 0px 0px #ff544e;
       }
     }
-    .home_list_content {
-      max-width: 500px;
-      padding: 0 5rem;
-      > *:not(:last-child) {
-        margin-bottom: 1rem;
+    @media (min-width: 767px) {
+      padding: 5rem 0;
+      .home_list_photo {
+        img {
+          height: 300px;
+          box-shadow: -10px -10px 0px 0px #ff544e;
+        }
+      }
+      &:nth-child(even){
+        .home_list_photo {
+          img {
+            box-shadow: 10px 10px 0px 0px #ff544e;
+          }
+        }
+      }
+      .home_list_content {
+        max-width: 500px;
+        padding: 0 5rem;
+        > *:not(:last-child) {
+          margin-bottom: 1rem;
+        }
       }
     }
     @media (max-width: 992px) {
-      .home_list_content {
-        padding: 0 3rem;
-      }
+      background-color: #efece8;
     }
     @media (max-width: 768px) {
-      padding: 3rem;
-      .home_list_photo {
-        margin-bottom: 1rem;
+      .home_list_container {
+        max-width: none;
+        padding: 0;
+      }
+      // .home_list_photo {
+      //   margin-bottom: 1rem;
+      // }
+      .home_list_content {
+        max-width: 720px;
+        padding: 3rem;
       }
     }
     @media (max-width: 576px) {
-      padding: 1rem;
+      .home_list_content {
+        max-width: 540px;
+        padding: 1rem;
+      }
     }
   }
 </style>

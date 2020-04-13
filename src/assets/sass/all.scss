@@ -1,5 +1,5 @@
 @import "~bootstrap/scss/functions";
-@import "./_variables";
+@import "./helpers/_variables";
 @import "~bootstrap/scss/bootstrap";
-@import "./_custom";
-@import "./_dashboard";
+@import "./helpers/_custom";
+@import "./components/_dashboard";

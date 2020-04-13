@@ -11,12 +11,12 @@
         <li class="breadcrumb-item active">{{ product.title }}</li>
       </ol>
       <div class="row">
-        <div class="col-md-8 col-12 mb-lg-0 mb-3">
+        <div class="col-lg-8 col-12 mb-lg-0 mb-3">
           <div class="proitem-main">
             <img :src="product.imageUrl" class="img-fluid" :alt=" product.title">
           </div>
         </div>
-        <div class="col-md-4 col-12 align-self-center">
+        <div class="col-lg-4 col-12 align-self-center">
            <div class="pb-3 mb-3">
             <h2>{{ product.title }}</h2>
           </div>
@@ -24,16 +24,15 @@
             <h4 class="font-weight-bold">特價：{{ product.price }} 元/ {{ product.unit }}</h4>
             <del class="d-block mb-3">原價:{{ product.origin_price }}元</del>
             <div class="mb-3">
-              <p class="font-h6 mb-2">請選擇數量</p>
-              <select class="form-control" v-model="product.num">
-                <option>數量</option>
+              <select class="form-control" v-model="num">
+                <option :value="0">請選擇數量</option>
                 <option :value="num" v-for="num in 10" :key="num">
-                  {{num}} {{product.unit}}
+                  {{ num }} {{ product.unit }}
                 </option>
               </select>
             </div>
             <button class="btn btn-primary btn-lg"
-            @click="addCart(itemID, product.num)">
+            @click="addCart(itemID, num)">
               <i class="fas fa-cart-plus mr-2"></i>
               <span>加入購物車</span>
             </button>
@@ -88,7 +87,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import HotProduct from '../../components/front/HotProduct.vue';
+import HotProduct from '@/components/front/HotProduct.vue';
 
 export default {
   components: {
@@ -97,6 +96,7 @@ export default {
   data() {
     return {
       product: {},
+      num: 0,
       itemID: '',
     };
   },

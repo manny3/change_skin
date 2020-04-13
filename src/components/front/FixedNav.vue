@@ -9,7 +9,7 @@
           </router-link>
         </div>
         <div class="header_items_wrap"
-        :class="{'menu_item_open': menuOpen === true}">
+        :class="{ 'menu_item_open': menuOpen === true }">
           <div class="menu">
             <ul>
               <li>
@@ -28,12 +28,12 @@
             <router-link to="/login"><i class="fas fa-user"></i>
             </router-link>
             <router-link to="/check_order" class="btn_cart"><i class="fas fa-shopping-cart"></i>
-            <span class="badge badge-pill badge-dark">{{cart.carts.length}}</span>
+            <span class="badge badge-pill badge-dark" v-if="cart.carts.length !== 0">{{ cart.carts.length }}</span>
             </router-link>
           </div>
         </div>
         <div class="menu_btn d-lg-none d-block"
-        :class="{'menu_open': menuOpen === true}"
+        :class="{ 'menu_open': menuOpen === true }"
         @click="menuOpen = !menuOpen">
           <a href="javascript: void(0)" class="bar_btn">
             <span></span>
@@ -43,7 +43,7 @@
     </div>
     <div class="fixed_cart d-block d-lg-none">
       <router-link to="/check_order" class="btn_cart"><i class="fas fa-shopping-cart fa-2x"></i>
-        <span class="badge badge-pill badge-dark">{{cart.carts.length}}</span></router-link>
+        <span class="badge badge-pill badge-dark" v-if="cart.carts.length !== 0">{{ cart.carts.length }}</span></router-link>
     </div>
   </div>
 </template>
@@ -203,7 +203,7 @@ export default {
         position: absolute;
         width: 28px;
         height: 3px;
-        background: #51c0b4;
+        background: #cb1340;
         left: 8px;
         transition: transform .3s;
         top: 10px;
@@ -213,7 +213,7 @@ export default {
         position: absolute;
         width: 28px;
         height: 3px;
-        background: #51c0b4;
+        background: #cb1340;
         left: 8px;
         transition: transform .3s;
         top: 30px;
@@ -223,7 +223,7 @@ export default {
       position: absolute;
       width: 28px;
       height: 3px;
-      background: #51c0b4;
+      background: #cb1340;
       top: 20px;
       left: 8px;
       transform: scale(1);
@@ -247,7 +247,7 @@ export default {
   }
   .fixed_cart {
     position: fixed;
-    bottom: 60px;
+    bottom: 23px;
     right: 23px;
     z-index: 100;
     background-color: #fff;

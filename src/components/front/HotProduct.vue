@@ -76,7 +76,8 @@ export default {
     ...mapActions('productModules', ['getProducts']),
     itemPage(id) {
       const vm = this;
-      vm.$router.push(`product/${id}`);
+      vm.$router.push(`/product/${id}`);
+      window.location.reload();
     },
   },
   created() {

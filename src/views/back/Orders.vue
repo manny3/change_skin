@@ -24,7 +24,7 @@
             </ul>
           </td>
           <td class="text-right">
-            {{ item.total | currency}}
+            {{ item.total | currency }}
           </td>
           <td>
             <span v-if="item.is_paid" class="text-success">已付款</span>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Pagination from '../../components/Pagination.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   data() {

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueMeta from 'vue-meta';
 import 'bootstrap';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -16,7 +17,6 @@ import tw from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import './bus';
 import currencyFilter from './filters/currency';
 import dateFilter from './filters/date';
 import roundFilter from './filters/round';
@@ -34,6 +34,7 @@ axios.defaults.withCredentials = true;
 
 Vue.use(VueAxios, axios);
 Vue.use(Vuex);
+Vue.use(VueMeta);
 
 Vue.config.productionTip = false;
 

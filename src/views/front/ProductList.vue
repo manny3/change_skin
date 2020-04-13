@@ -2,27 +2,25 @@
 <template>
   <div class="productlist">
     <loading :active.sync="isLoading"></loading>
-    <div class="container">
-      <div class="minor">
-          <div class="minor_title text_main">
-            <h2 class="font-h3">
-              {{selected}}
-            </h2>
-          </div>
+    <div class="minor">
+        <div class="minor_title text_main">
+          <h2 class="font-h3">
+            {{ selected }}
+          </h2>
+        </div>
+        <div class="container">
           <div class="minor_sort">
-            <div class="row justify-content-end">
-              <div class="col-md-auto col-12">
-                <select class="form-control"
-                v-model="selected">
-                  <option :value="'所有商品'" selected>所有商品</option>
-                  <option
-                  v-for="item in categories" :key="item"
-                  :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
+            <select class="form-control"
+            v-model="selected">
+              <option :value="'所有商品'" selected>所有商品</option>
+              <option
+              v-for="item in categories" :key="item"
+              :value="item">{{ item }}</option>
+            </select>
           </div>
-      </div>
+        </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-6 col-12 p-3" v-for="(item) in filterData" :key="item.id">
           <div class="product_list" @click="itemPage(item.id)">
@@ -43,7 +41,7 @@
                       詳情
                     </button>
                     <button class="btn btn-outline-primary w-100"
-                    @click="addtoCart(item.id)">
+                    @click.stop="addtoCart(item.id)">
                       加入購物車
                     </button>
                   </div>
@@ -103,6 +101,9 @@ export default {
     >*:not(:last-child){
       margin-bottom: 1rem;
     }
+    @media (max-width: 992px) {
+      padding-top: 0;
+    }
   }
   .minor_title {
     background-image: url('../../assets/images/productTitle.jpg');
@@ -120,15 +121,24 @@ export default {
         margin-left: 2rem;
       }
     }
+    @media (min-width: 991px) {
+      width: 100%;
+      max-width: 960px;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
   .minor_sort {
     select {
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
       margin-left: auto;
-      width: auto;
-      &:hover {
-        border: 1px solid #ff544e;
-      }
+      appearance:none;
+      background: url("https://raw.githubusercontent.com/ourjs/static/gh-pages/2015/arrow.png") no-repeat scroll right center transparent;
+      width: 120px;
+    height: 100%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #979997;
     }
   }
   .product_list {

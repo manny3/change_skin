@@ -20,10 +20,10 @@
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td class="text-right">
-            {{ item.origin_price | currency}}
+            {{ item.origin_price | currency }}
           </td>
           <td class="text-right">
-            {{ item.price | currency}}
+            {{ item.price | currency }}
           </td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
@@ -158,7 +158,7 @@
             </button>
           </div>
           <div class="modal-body">
-            是否刪除<span class="text-danger">{{tempProduct.title}}</span>商品
+            是否刪除<span class="text-danger">{{ tempProduct.title }}</span>商品
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
@@ -172,7 +172,7 @@
 
 <script>
 import $ from 'jquery';
-import Pagination from '../../components/Pagination.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
   data() {

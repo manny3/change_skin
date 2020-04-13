@@ -82,7 +82,7 @@
                   <label for="username" class="cart_from_title mb-2"><span>*</span>收件人姓名</label>
                   <ValidationProvider name="姓名" rules="required" v-slot="{ errors }">
                   <input v-model="form.user.name" class="form-control form-control-sm" id="username" type="text"
-                  :class="{'is-invalid': errors[0]}"
+                  :class="{ 'is-invalid': errors[0] }"
                   placeholder="請輸入姓名">
                   <span class="text-danger">{{ errors[0] }}</span>
                   </ValidationProvider>
@@ -91,7 +91,7 @@
                   <label for="usertel" class="cart_from_title mb-2"><span>*</span>收件人電話</label>
                   <ValidationProvider name="電話" rules="required" v-slot="{ errors }">
                   <input v-model="form.user.tel" class="form-control form-control-sm" id="usertel" type="tel"
-                  :class="{'is-invalid': errors[0]}"
+                  :class="{ 'is-invalid': errors[0] }"
                   placeholder="請輸入電話">
                   <span class="text-danger">{{ errors[0] }}</span>
                   </ValidationProvider>
@@ -100,7 +100,7 @@
                   <label for="address" class="cart_from_title mb-2"><span>*</span>收件人地址</label>
                   <ValidationProvider name="地址" rules="required" v-slot="{ errors }">
                   <input v-model="form.user.address" class="form-control form-control-sm" id="address" type="text"
-                  :class="{'is-invalid': errors[0]}"
+                  :class="{ 'is-invalid': errors[0] }"
                   placeholder="請輸入地址">
                   <span class="text-danger">{{ errors[0] }}</span>
                   </ValidationProvider>
@@ -124,7 +124,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import HotProduct from '../../components/front/HotProduct.vue';
+import HotProduct from '@/components/front/HotProduct.vue';
 
 export default {
   components: {

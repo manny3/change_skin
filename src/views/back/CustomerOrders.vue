@@ -5,7 +5,7 @@
       <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
         <div class="card border-0 shadow-sm">
           <div style="height: 150px; background-size: cover; background-position: center"
-            :style="{backgroundImage: `url(${item.imageUrl})`}">
+            :style="{ backgroundImage: `url(${item.imageUrl})` }">
           </div>
           <div class="card-body">
             <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
@@ -87,7 +87,7 @@
             <label for="useremail">Email</label>
             <ValidationProvider name="Email" rules="required|email" v-slot="{ errors }">
               <input v-model="form.user.email" class="form-control" id="useremail" type="email"
-              :class="{'is-invalid': errors[0]}"
+              :class="{ 'is-invalid': errors[0] }"
               placeholder="請輸入Email">
               <span class="text-danger">{{ errors[0] }}</span>
             </ValidationProvider>
@@ -107,7 +107,7 @@
             <label for="usertel">收件人電話</label>
             <ValidationProvider name="電話" rules="required" v-slot="{ errors }">
               <input v-model="form.user.tel" class="form-control" id="usertel" type="tel"
-              :class="{'is-invalid': errors[0]}"
+              :class="{ 'is-invalid': errors[0] }"
               placeholder="請輸入電話">
               <span class="text-danger">{{ errors[0] }}</span>
             </ValidationProvider>
@@ -117,7 +117,7 @@
             <label for="usertel">收件人地址</label>
             <ValidationProvider name="地址" rules="required" v-slot="{ errors }">
               <input v-model="form.user.address" class="form-control" id="address" type="text"
-              :class="{'is-invalid': errors[0]}"
+              :class="{ 'is-invalid': errors[0] }"
               placeholder="請輸入地址">
               <span class="text-danger">{{ errors[0] }}</span>
             </ValidationProvider>
@@ -159,7 +159,7 @@
             </div>
             <select name="" class="form-control mt-3" v-model="product.num">
               <option :value="num" v-for="num in 10" :key="num">
-                選購 {{num}} {{product.unit}}
+                選購 {{ num }} {{ product.unit }}
               </option>
             </select>
           </div>
